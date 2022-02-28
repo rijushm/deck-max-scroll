@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Deck Max</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+	<section class="w-full h-screen flex justify-center items-center flex-col" id="main">
+		<video src="deck.mkv" id="airpod-video" class="w-full h-full object-cover"></video>
+	</section>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.js" integrity="sha512-mq6TSOBEH8eoYFBvyDQOQf63xgTeAk7ps+MHGLWZ6Byz0BqQzrP+3GIgYL+KvLaWgpL8XgDVbIRYQeLa3Vqu6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<script type="text/javascript">
+
+		var main = document.querySelector('#main');
+		var intro = main.querySelector('#intro');
+		var video = main.querySelector('video');
+
+		var controller = new ScrollMagic.Controller();
+
+		let scene = new ScrollMagic.Scene({
+			duration: 3200,
+			triggerElement: main,
+			triggerHook: 0
+		})
+		.setPin(main)
+		// .addIndicators()
+		.addTo(controller);
+
+
+		// Video animation code
+		let accelamount = 0.1;
+		let scrollpos = 0;
+		let delay = 0;
+
+		scene.on('update', e =>{
+			scrollpos = e.scrollPos / 1000;
+		})
+
+		setInterval(()=>{
+			delay += (scrollpos - delay) * accelamount;
+			video.currentTime = delay;
+
+		}, 33.3);
+
+
+	</script>
+
+</body>
+</html>
